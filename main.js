@@ -32,6 +32,14 @@ let updateWindow;
 autoUpdater.autoDownload = false;
 autoUpdater.autoInstallOnAppQuit = true;
 
+// Set update server URL for GitHub releases
+autoUpdater.setFeedURL({
+  provider: 'github',
+  owner: 'Anirbandz',
+  repo: 'todo-desktop-app',
+  private: false
+});
+
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1200,
@@ -145,6 +153,9 @@ function startServer() {
 // App event handlers
 app.whenReady().then(() => {
   startServer();
+  
+  // Initialize auto-updater
+  autoUpdater.checkForUpdatesAndNotify();
   
   // Wait for server to start before creating window
   setTimeout(() => {
