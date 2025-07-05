@@ -1,0 +1,90 @@
+<div class="dashboard">
+  <div class="dashboard-header">
+    <h1>Settings</h1>
+    <p>Customize your TaskFlow experience</p>
+  </div>
+  
+  <div class="settings-container">
+    <div class="settings-section">
+      <h3>Profile Settings</h3>
+      <div class="profile-section">
+        <div class="profile-picture">
+          <img src="<%= user.profilePicture || '/images/default-avatar.png' %>" alt="Profile Picture" id="profilePic">
+          <button class="btn btn-secondary btn-small" onclick="document.getElementById('profilePicInput').click()">
+            Change Picture
+          </button>
+          <input type="file" id="profilePicInput" accept="image/*" style="display: none;" onchange="uploadProfilePicture(this)">
+        </div>
+        <form class="settings-form" id="profileForm">
+          <div class="form-group">
+            <label for="displayName">Display Name</label>
+            <input type="text" id="displayName" name="name" value="<%= user.name || 'User' %>">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" value="<%= user.email || 'user@example.com' %>" readonly>
+          </div>
+          <button type="submit" class="btn btn-primary">Save Profile</button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="settings-section">
+      <h3>App Preferences</h3>
+      <div class="preference-item">
+        <label>
+          <input type="checkbox" checked> Enable notifications
+        </label>
+      </div>
+      <div class="preference-item">
+        <label>
+          <input type="checkbox" checked> Auto-save tasks
+        </label>
+      </div>
+      <div class="preference-item">
+        <label>
+          <strong>Theme:</strong>
+          <select id="themeSelect" onchange="changeTheme(this.value)">
+            <option value="light" <%= user.theme === 'light' ? 'selected' : '' %>>Light Mode</option>
+            <option value="dark" <%= user.theme === 'dark' ? 'selected' : '' %>>Dark Mode</option>
+          </select>
+        </label>
+      </div>
+    </div>
+    
+    <div class="settings-section">
+      <h3>Data Management</h3>
+      <div class="data-actions">
+        <button class="btn btn-secondary">Export Data</button>
+        <button class="btn btn-secondary">Import Data</button>
+        <button class="btn btn-danger">Clear All Data</button>
+      </div>
+    </div>
+    
+    <div class="settings-section">
+      <h3>About</h3>
+      <p><strong>TaskFlow Desktop</strong></p>
+      <p>Version <span id="appVersion">1.0.0</span></p>
+      <p>A modern desktop todo application built with Electron and Express.</p>
+      
+      <div class="update-section">
+        <h4>Updates</h4>
+        <p>Keep your app up to date with the latest features and improvements.</p>
+        <div class="update-actions">
+          <button class="btn btn-primary" onclick="checkForUpdates()" id="checkUpdateBtn">
+            <i class="fas fa-sync-alt"></i> Check for Updates
+          </button>
+          <span id="updateStatus" class="update-status"></span>
+        </div>
+        <div id="updateInfo" class="update-info" style="display: none;">
+          <p><strong>Latest Version:</strong> <span id="latestVersion"></span></p>
+          <p><strong>Release Notes:</strong></p>
+          <div id="releaseNotes" class="release-notes"></div>
+          <button class="btn btn-success" onclick="downloadUpdate()" id="downloadUpdateBtn" style="display: none;">
+            <i class="fas fa-download"></i> Download Update
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

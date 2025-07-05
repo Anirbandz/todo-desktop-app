@@ -1,0 +1,105 @@
+{
+  "name": "TaskFlow",
+  "version": "1.0.2",
+  "description": "A desktop todo application built with Electron and Express",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "NODE_ENV=development electron .",
+    "build": "electron-builder",
+    "build:mac": "electron-builder --mac",
+    "build:dmg": "electron-builder --mac",
+    "publish": "electron-builder --publish=always",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "electron": "^37.2.0",
+    "electron-builder": "^26.0.12",
+    "sharp": "^0.34.2"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "connect-mongo": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.1",
+    "ejs": "^3.1.10",
+    "electron-updater": "^6.6.2",
+    "express": "^5.1.0",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.18.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.16.1",
+    "multer": "^2.0.1",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0"
+  },
+  "build": {
+    "appId": "com.taskflow.desktop",
+    "productName": "TaskFlow",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "public/**/*",
+      "views/**/*",
+      "config/**/*",
+      "models/**/*",
+      "routes/**/*",
+      "middleware/**/*",
+      "assets/icon.*",
+      "package.json",
+      "!**/test{,s}/**",
+      "!**/TestDMG.dmg",
+      "!**/*.md",
+      "!**/create-assets.html",
+      "!**/generate-assets.js",
+      "!**/dist{,/**/*}",
+      "!**/.git{,/**/*}",
+      "!**/node_modules/.bin{,/**/*}",
+      "!**/uploads/profile-pics/*",
+      "!**/renderer/**/*",
+      "!**/node_modules/**/*",
+      "!**/package-lock.json",
+      "!**/.env",
+      "!**/.env.*"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.png",
+      "compression": "maximum"
+    },
+    "dmg": {
+      "title": "TaskFlow",
+      "artifactName": "TaskFlow.dmg",
+      "format": "UDRW"
+    },
+    "extraResources": [
+      {
+        "from": "node_modules",
+        "to": "node_modules"
+      }
+    ],
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "Anirbandz",
+        "repo": "todo-desktop-app"
+      }
+    ]
+  }
+}

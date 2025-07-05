@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Asset Generator</title>
+    <style>
+        body { margin: 0; padding: 20px; font-family: Arial, sans-serif; }
+        .canvas-container { margin: 20px 0; }
+        canvas { border: 1px solid #ccc; }
+        button { padding: 10px 20px; margin: 10px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #5a6fd8; }
+    </style>
+</head>
+<body>
+    <h1>TaskFlow Asset Generator</h1>
+    
+    <div class="canvas-container">
+        <h3>App Icon (512x512)</h3>
+        <canvas id="iconCanvas" width="512" height="512"></canvas>
+        <br>
+        <button onclick="downloadCanvas('iconCanvas', 'icon.png')">Download Icon</button>
+    </div>
+    
+    <div class="canvas-container">
+        <h3>DMG Background (540x380)</h3>
+        <canvas id="dmgCanvas" width="540" height="380"></canvas>
+        <br>
+        <button onclick="downloadCanvas('dmgCanvas', 'dmg-background.png')">Download DMG Background</button>
+    </div>
+
+    <script>
+        function drawIcon() {
+            const canvas = document.getElementById('iconCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Gradient background
+            const gradient = ctx.createLinearGradient(0, 0, 512, 512);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(1, '#764ba2');
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 512, 512);
+            
+            // Task icon
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 200px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('✓', 256, 256);
+            
+            // App name
+            ctx.font = 'bold 48px Arial';
+            ctx.fillText('TaskFlow', 256, 400);
+        }
+        
+        function drawDMG() {
+            const canvas = document.getElementById('dmgCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Gradient background
+            const gradient = ctx.createLinearGradient(0, 0, 540, 380);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(1, '#764ba2');
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 540, 380);
+            
+            // App name
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 48px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('TaskFlow Desktop', 270, 190);
+            
+            // Subtitle
+            ctx.font = '24px Arial';
+            ctx.fillText('Drag to Applications to install', 270, 240);
+        }
+        
+        function downloadCanvas(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+        
+        // Initialize
+        drawIcon();
+        drawDMG();
+    </script>
+</body>
+</html> 

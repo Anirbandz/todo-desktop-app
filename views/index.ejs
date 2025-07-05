@@ -1,0 +1,31 @@
+<div class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title">Welcome to TaskFlow</h1>
+        <p class="hero-subtitle">Your personal task manager for desktop productivity</p>
+        <div class="hero-buttons">
+            <% if (locals.user) { %>
+                <a href="/dashboard" class="btn btn-primary">Go to Dashboard</a>
+            <% } else { %>
+                <a href="/auth/login" class="btn btn-primary">Get Started</a>
+                <a href="/auth/signup" class="btn btn-secondary">Sign Up</a>
+            <% } %>
+        </div>
+    </div>
+    <div class="hero-features">
+        <div class="feature">
+            <i class="fas fa-check-circle"></i>
+            <h3>Task Management</h3>
+            <p>Organize your tasks with ease</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-clock"></i>
+            <h3>Time Tracking</h3>
+            <p>Monitor your productivity</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-chart-line"></i>
+            <h3>Progress Analytics</h3>
+            <p>Track your achievements</p>
+        </div>
+    </div>
+</div> 
