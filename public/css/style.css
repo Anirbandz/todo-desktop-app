@@ -1149,6 +1149,66 @@ body.dark-theme .release-notes {
     color: #cccccc;
 }
 
+/* Additional dark theme styles for settings page */
+body.dark-theme .settings-container {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-theme .settings-form {
+    color: #ffffff;
+}
+
+body.dark-theme .settings-form .form-group label {
+    color: #ffffff;
+}
+
+body.dark-theme .settings-form input[type="text"],
+body.dark-theme .settings-form input[type="email"] {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #333;
+    color: #ffffff;
+}
+
+body.dark-theme .settings-form input[type="text"]:focus,
+body.dark-theme .settings-form input[type="email"]:focus {
+    border-color: #667eea;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+body.dark-theme .settings-form input[readonly] {
+    background: rgba(255, 255, 255, 0.05);
+    color: #cccccc;
+}
+
+body.dark-theme .preference-item input[type="checkbox"] {
+    accent-color: #667eea;
+}
+
+body.dark-theme .preference-item select {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #333;
+    color: #ffffff;
+}
+
+body.dark-theme .preference-item select:focus {
+    border-color: #667eea;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+body.dark-theme .profile-picture img {
+    border: 2px solid #333;
+}
+
+body.dark-theme .profile-picture button {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid #333;
+}
+
+body.dark-theme .profile-picture button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
 body.dark-theme .task-item,
 body.dark-theme .stat-card {
     background: rgba(255, 255, 255, 0.1);
