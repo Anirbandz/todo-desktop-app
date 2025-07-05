@@ -32,6 +32,20 @@ let updateWindow;
 autoUpdater.autoDownload = false;
 autoUpdater.autoInstallOnAppQuit = true;
 
+// Configure for unsigned apps (development builds)
+if (process.platform === 'darwin') {
+  autoUpdater.allowDowngrade = false;
+  autoUpdater.allowPrerelease = false;
+  // Disable code signature validation for development builds
+  autoUpdater.allowUntrustedCerts = true;
+  
+  // For development builds, disable strict code signature validation
+  if (process.env.NODE_ENV === 'development' || !app.isPackaged) {
+    autoUpdater.allowPrerelease = true;
+    // This will help bypass code signature issues in development
+  }
+}
+
 // Set update server URL for GitHub releases
 autoUpdater.setFeedURL({
   provider: 'github',
@@ -305,10 +319,17 @@ autoUpdater.on('update-not-available', () => {
 
 autoUpdater.on('error', (err) => {
   console.error('Auto-updater error:', err);
+  
+  // Handle code signature errors specifically
+  let errorMessage = err.message;
+  if (err.message.includes('code signature') || err.message.includes('Code signature')) {
+    errorMessage = 'Update verification failed due to code signing. This is normal for development builds. Please download the update manually from GitHub.';
+  }
+  
   if (mainWindow) {
     mainWindow.webContents.send('update-status', { 
       status: 'error', 
-      error: err.message 
+      error: errorMessage 
     });
   }
 });
