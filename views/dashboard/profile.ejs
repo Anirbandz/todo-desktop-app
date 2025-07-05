@@ -53,10 +53,10 @@
     </button>
   </div>
   
-  <div class="about-section">
+      <div class="about-section">
     <h3>About TaskFlow</h3>
     <p><strong>TaskFlow Desktop</strong></p>
-    <p>Version <span id="appVersion">1.0.0</span></p>
+    <p>Version <span id="appVersion">Loading...</span></p>
     <p>A modern desktop todo application built with Electron and Express.</p>
     
     <div class="update-section">
@@ -152,4 +152,14 @@ function confirmLogout() {
 handleProfileForm('profilePicForm', '/dashboard/profile/picture', 'Profile picture updated!');
 handleProfileForm('nameForm', '/dashboard/profile/name', 'Name updated!');
 handleProfileForm('passwordForm', '/dashboard/profile/password', 'Password updated!');
+
+// Load current app version
+if (window.electronAPI) {
+    window.electronAPI.getAppVersion().then(version => {
+        const versionSpan = document.getElementById('appVersion');
+        if (versionSpan) {
+            versionSpan.textContent = version;
+        }
+    });
+}
 </script> 
